@@ -1,7 +1,4 @@
 //
-//  Tweet.m
-//  Tweeterena
-//
 //  Created by Dominic Wroblewski on 14/11/2010.
 //  Copyright 2010 TerraCoding. All rights reserved.
 //

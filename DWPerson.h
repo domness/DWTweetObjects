@@ -1,6 +1,4 @@
 //
-//  MyProf.h
-//  Tweeterena
 //
 //  Created by Dominic Wroblewski on 03/11/2010.
 //  Copyright 2010 TerraCoding. All rights reserved.
