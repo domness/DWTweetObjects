@@ -1,0 +1,5 @@
+These set of classes is used to help along development of a Cocoa (Mac OS X) Twitter client.
+
+As not much code is available for utilising the data received from Twitter.com on the Mac, I decided to develop a set of classes to use the data for an NSTableView and a set of formatted cells.
+
+Feel free to use the code where you like.
