@@ -21,13 +21,10 @@
 -(NSMutableArray *)resultTweets
 {
 	NSMutableArray *temp = [[NSMutableArray alloc] init];
-	for(int i=0; i<[results count]; i++)
+	for(int i=0; i<[results count]-1; i++)
 	{
-		// Convert
 		RWResultTweet *resultTweet = [[RWResultTweet alloc] initWithDictionary:[results objectAtIndex:i]];
-		// Store
 		[temp addObject:resultTweet];
-		// Release
 		[resultTweet release];
 	}
 	
