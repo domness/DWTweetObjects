@@ -14,22 +14,24 @@
 	NSString	* tweetID;
 	NSString	* msg;
 	NSString	* username;
-	NSString	* fullname;
 	NSDate		* date;
 	NSImage		* avatar;
 	NSString	* avatarURL;
 	NSString	* via;
+	NSString	* from_user_id_str;
+	NSString	* to_user_id_str;
 	
 }
 
 @property (assign) NSString * tweetID;
 @property (assign) NSString * msg;
 @property (assign) NSString * username;
-@property (assign) NSString * fullname;
 @property (assign) NSDate	* date;
 @property (assign) NSImage  * avatar;
 @property (assign) NSString * avatarURL;
 @property (assign) NSString * via;
+@property (assign) NSString * from_user_id_str;
+@property (assign) NSString * to_user_id_str;
 
 - (id) initWithDictionary:(NSDictionary*)dict;
 - (NSImage *)imageFromUrl:(NSString*)url;
