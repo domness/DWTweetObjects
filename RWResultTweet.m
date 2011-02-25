@@ -23,16 +23,41 @@
 
 - (id) initWithDictionary:(NSDictionary*)dict {
 	
-	self.tweetID			= [dict objectForKey:@"id_str"];
-	self.msg				= [dict objectForKey:@"text"];
-	self.username			= [dict objectForKey:@"from_user"];
-	self.from_user_id_str	= [dict objectForKey:@"from_user_id_str"];
-	self.to_user_id_str		= [dict objectForKey:@"to_user_id_str"];
-	self.date				= [dict objectForKey:@"created_at"];
-	self.avatarURL			= [dict valueForKey:@"profile_image_url"];
-	self.via				= [dict objectForKey:@"source"];
+	if ([dict objectForKey:@"completed_in"]) {
+		self.tweetID = @"";
+		self.msg = @"";
+		self.username = @"";
+		self.from_user_id_str = @"";
+		self.to_user_id_str = @"";
+		self.date = nil;
+		self.via = @"";
+		self.avatarURL = @"";
+	}else {
+		self.tweetID			= [dict objectForKey:@"id_str"];
+		self.msg				= [dict objectForKey:@"text"];
+		self.username			= [dict objectForKey:@"from_user"];
+		self.from_user_id_str	= [dict objectForKey:@"from_user_id_str"];
+		self.to_user_id_str		= [dict objectForKey:@"to_user_id_str"];
+		self.date				= [dict objectForKey:@"created_at"];
+		self.via				= [dict objectForKey:@"source"];
+		
+		if ([dict objectForKey:@"profile_image_url"]) {
+			if ([dict objectForKey:@"profile_image_url"] != [NSNull null]) {
+				self.avatarURL	= [dict objectForKey:@"profile_image_url"];
+				[NSThread detachNewThreadSelector:@selector(bgThread:) toTarget:self withObject:dict];
+			}else {
+				self.avatarURL = @"";
+			}
+		}else {
+			self.avatarURL = @"";
+		}
+
+		
+	}
+
 	
-	[NSThread detachNewThreadSelector:@selector(bgThread:) toTarget:self withObject:dict];
+
+	
 	
 	return self;
 }
@@ -41,7 +66,7 @@
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
-	NSURL *imageURL = [NSURL URLWithString:[obj valueForKey:@"profile_image_url"]];
+	NSURL *imageURL = [NSURL URLWithString:self.avatarURL];
 	NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
 	NSImage *image = [[NSImage alloc] initWithData:imageData];
 	
